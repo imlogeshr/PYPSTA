@@ -1,0 +1,44 @@
+<div>
+    <h1 style="font-weight: 600; font-size: 20px; text-align: center;">{{title}}</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>Id</td>
+                <td>:</td>
+                <td><input type="text" readonly='true' class="form-control" matInput [(ngModel)]="id"></td>
+            </tr>
+            <tr *ngIf="task && add">
+                <td>Project Name</td>
+                <td>:</td>
+                <td><select class="form-control" [disabled]="taskEdit" matInput [value]="project" [(ngModel)]="project">
+
+                  <option selected value="">Select Project</option> <option *ngFor="let data of projectData" [value]="data.name">{{data.name}}</option></select></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>:</td>
+                <td><input type="text" class="form-control" [readonly]="taskEdit" matInput [(ngModel)]="name"></td>
+            </tr>
+            <tr *ngIf="task">
+                <td>Assigned To</td>
+                <td style="margin-left: 5%;">:</td>
+                <td><input type="text" class="form-control" [readonly]="taskEdit" matInput [(ngModel)]="assignedTo"></td>
+            </tr>
+            <tr *ngIf="task">
+                <td>Status</td>
+                <td>:</td>
+                <td><select class="form-control" matInput [(ngModel)]="status">
+                  <option selected value="">Select Status</option><option value="start">Start</option><option value="end">End</option><option value="complete">Complete</option></select></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <button mat-stroked-button color="primary" (click)='submit()'>
+                Submit
+            </button>
+        <button style="margin-left: 5%;" mat-stroked-button color="primary" (click)='closeDialog()'>
+                Close
+            </button>
+    </div>
+</div>

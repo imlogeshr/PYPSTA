@@ -1,46 +1,83 @@
 <div style="overflow: hidden;">
-    <h1 style="font-weight: 600; margin-left: 2%; margin-top: 1%;">Dashboard</h1>
+    <h1 style="font-weight: 600; margin-left: 2%; margin-top: 1%;">{{this.role}}</h1>
     <div class="row" style="margin-top:1%;">
         <div class="card-size ">
             <mat-card class="report-card " style="margin-left:5%; margin-right:5%;border-radius:5vh; ">
+                <h1 style="font-weight: 600; font-size: 20px;">Project Data</h1>
+                <button *ngIf="role=='ADMIN'" style="float:right;margin-top: -8%;" mat-stroked-button color="primary" (click)='addProject()'>
+               Add New Project
+            </button>
+                <table style="width: 100%;" mat-table [dataSource]="dataSource" class="mat-elevation-z1 table-responsive-lg">
 
-                <div style="display: block; float:left; width: 50%; margin-top:5%;">
-                    <canvas width='400px' height="400px" baseChart [data]="pieChartDataNew" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [legend]="pieChartLegend">
-  </canvas>
-                </div>
-                <div style="float:right; width: 35%; margin-left: 15%;margin-top:60%; ">
-                    <div>
-                        <p class="dot" style="float:left; background-color: #ffa1b5;"></p>
-                        <p style="font-size: 18px;"> Test1 | 16</p>
-                    </div>
-                    <div>
-                        <p class="dot" style="float:left; background-color: rgba(159, 216, 223, 1);"></p>
-                        <p style="font-size: 18px;"> Test2 | 8</p>
-                    </div>
-                    <div>
-                        <p class="dot" style="float:left; background-color: rgba(240, 246, 150, 1);;"></p>
-                        <p style="font-size: 18px;"> Test3 | 4</p>
-                    </div>
-                </div>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>No.</th>
+                        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+                        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef>Update</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button style="background-color: transparent; border-color: transparent;" (click)="editProject(element)"><span style="cursor: pointer" class="disable-span"  class="material-icons">edit</span></button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
             </mat-card>
         </div>
         <div class="card-size ">
             <mat-card class="report-card " style="margin-left:5%; margin-right:5%;border-radius:5vh; ">
+                <h1 style="font-weight: 600; font-size: 20px;">Task Data</h1>
+                <button *ngIf="role!='DEVELOPER'" style="float:right;margin-top: -8%;" mat-stroked-button color="primary" (click)='addTask()'>
+               Add New Task
+            </button>
+                <table style="width: 100%;" mat-table [dataSource]="dataSource1" class="mat-elevation-z1 table-responsive-lg">
 
-                <div style="display: block; float:left; width: 50%; margin-top:5%;">
-                    <canvas width="500px" height="400px" baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType">
-      </canvas>
-                </div>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>No.</th>
+                        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="project">
+                        <th mat-header-cell *matHeaderCellDef>Project Name</th>
+                        <td mat-cell *matCellDef="let element">{{element.project}}</td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>Task Name</th>
+                        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="assignedTo">
+                        <th mat-header-cell *matHeaderCellDef>Assigned To</th>
+                        <td mat-cell *matCellDef="let element">{{element.assignedTo}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef>Status</th>
+                        <td mat-cell *matCellDef="let element">{{element.status}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="edit">
+                        <th mat-header-cell *matHeaderCellDef>Update</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button style="background-color: transparent; border-color: transparent;" (click)="editTask(element)"><span style="cursor: pointer" class="disable-span"  class="material-icons">edit</span></button>
+                        </td>
+                    </ng-container>
 
 
 
+
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+                </table>
             </mat-card>
         </div>
-
-
-
-
     </div>
 </div>

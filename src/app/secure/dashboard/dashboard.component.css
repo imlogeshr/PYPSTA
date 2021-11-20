@@ -23,3 +23,8 @@
     margin-right: 2px;
     display: inline-block;
 }
+
+td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

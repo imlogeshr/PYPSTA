@@ -52,8 +52,8 @@ rtp(){
 }
 
 logout(){
-  localStorage.clear()
-
+ localStorage.removeItem('role')
+            localStorage.removeItem('verifiedUser')
           this.router.navigate(['/login']);
 }
 
